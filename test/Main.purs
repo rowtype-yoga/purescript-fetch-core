@@ -20,10 +20,11 @@ main :: Effect Unit
 main = launchAff_ do
   let requestBody = """{"hello":"world"}"""
   request <- liftEffect $ Request.new "http://httpbin.org/post"
-      { method: POST
-      , body: RequestBody.fromString requestBody
-      , headers: Headers.fromRecord { "Content-Type": "application/json" }
-      }
+    { method: POST
+    , body: RequestBody.fromString requestBody
+    , headers: Headers.fromRecord { "Content-Type": "application/json" }
+    , duplex
+    }
   let
     _ = spy "request" request
   response <- Promise.toAffE $ unsafeCoerce $ Fetch.fetch request
