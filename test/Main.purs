@@ -6,10 +6,11 @@ import Control.Promise as Promise
 import Data.HTTP.Method (Method(..))
 import Debug (spy)
 import Effect (Effect)
-import Effect.Aff (launchAff, launchAff_)
+import Effect.Aff (launchAff_)
 import Effect.Class (liftEffect)
 import Effect.Class.Console (log)
 import Fetch.Core as Fetch
+import Fetch.Core.Duplex (Duplex(..))
 import Fetch.Core.Headers as Headers
 import Fetch.Core.Request as Request
 import Fetch.Core.RequestBody as RequestBody
@@ -23,9 +24,9 @@ main = launchAff_ do
     { method: POST
     , body: RequestBody.fromString requestBody
     , headers: Headers.fromRecord { "Content-Type": "application/json" }
+    , duplex: Half
     }
-  let
-    _ = spy "request" request
+  let _ = spy "request" request
   response <- Promise.toAffE $ unsafeCoerce $ Fetch.fetch request
   responseBody <- Promise.toAffE $ unsafeCoerce $ Response.text response
   let _ = spy "response" response
