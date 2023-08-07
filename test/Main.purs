@@ -23,7 +23,6 @@ main = launchAff_ do
     { method: POST
     , body: RequestBody.fromString requestBody
     , headers: Headers.fromRecord { "Content-Type": "application/json" }
-    , duplex
     }
   let
     _ = spy "request" request
