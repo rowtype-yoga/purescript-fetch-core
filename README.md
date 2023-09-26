@@ -1,3 +1,5 @@
+⚠️ **Deprecated**: This library is deprecated and replaced by [`purescript-js-fetch`](https://github.com/purescript-contrib/purescript-js-fetch). If you need a high-level client use [`purescript-fetch`](https://github.com/rowtype-yoga/purescript-fetch)!
+
 # purescript-fetch-core
 
 [![Latest release](http://img.shields.io/github/release/rowtype-yoga/purescript-fetch-core.svg)](https://github.com/rowtype-yoga/purescript-fetch-core/releases)
